@@ -10,23 +10,23 @@ st.title("인공지능 시인")
 with st.sidebar:
     st.header("설정")
     api_key = st.text_input(
-        "OpenAI API Key를 입력하세요",
+        "Google API Key를 입력하세요",
         type="password",
-        placeholder="sk-...",
-        help="OpenAI API 키를 입력하세요. https://platform.openai.com/api-keys 에서 발급받을 수 있습니다."
+        placeholder="AIza...",
+        help="Google AI Studio에서 API 키를 발급받을 수 있습니다. https://makersuite.google.com/app/apikey"
     )
 
 # API 키가 입력되었는지 확인
 if not api_key:
-    st.warning("⚠️ 왼쪽 사이드바에서 OpenAI API Key를 입력해주세요.")
+    st.warning("⚠️ 왼쪽 사이드바에서 Google API Key를 입력해주세요.")
     st.stop()
 
 # API 키를 환경 변수에 설정
-os.environ["OPENAI_API_KEY"] = api_key
+os.environ["GOOGLE_API_KEY"] = api_key
 
 try:
-    # ChatOpenAI 초기화
-    llm = init_chat_model("gpt-4o-mini", model_provider="openai")
+    # Google Gemini 초기화
+    llm = init_chat_model("gemini-1.5-flash", model_provider="google_genai")
     
     # 프롬프트 템플릿 생성
     prompt = ChatPromptTemplate.from_messages([
